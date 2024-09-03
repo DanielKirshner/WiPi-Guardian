@@ -21,7 +21,7 @@ Probe requests are a valuable tool for legitimate network operations but can als
 - External Wi-Fi adapter (optional, for extended range)
 - Access to the internet for setting up dependencies #TODO: make a full deb package install file for offline usage
 
-### Configuration
+## Configuration
 
 - **Interface**: The interface to scan with (internal rpi wi-fi or external adapter)
 - **Notification Settings**: You can customize how you receive alerts (e.g., Telegram, email, SMS).
