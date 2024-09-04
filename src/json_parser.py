@@ -12,6 +12,7 @@ class JsonKeys(Enum):
     INTERFACE = "INTERFACE"
     WIFI_SSID = "WIFI_SSID"
 
+# TODO: Convert the 2 functions below to a JsonParser class with the following methods:
 
 def get_value_from_json(json_dict: dict, key: str) -> str:
     """
