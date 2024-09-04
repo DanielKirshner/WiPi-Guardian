@@ -1,6 +1,9 @@
+import logger
+import logging
 
 def main():
-    pass
+    logger.init()
+    logging.info("Main started!")
 
 
 if __name__ == "__main__":
