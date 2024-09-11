@@ -25,6 +25,7 @@ def create_logger_folder(log_dir_path: str) -> None:
         os.makedirs(log_dir_path)
 
 
+@staticmethod
 def init() -> None:
     """
     Initialize the logger.
