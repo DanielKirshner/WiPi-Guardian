@@ -102,6 +102,32 @@ class Interface():
         self.up = self._check_if_interface_is_up()
         self.mode = self._get_interface_mode()
         self._validate()
+    
+    
+    def enter_monitor_mode(self):
+        """
+        TODO: Wrap those base commands with safe subprocess call:
+        
+            systemctl mask wpa_supplicant
+            systemctl stop wpa_supplicant
+            ip link set dev self.name down
+            iwconfig self.name mode monitor
+            ip link set dev self.name up
+        """
+        pass
+    
+    
+    def enter_managed_mode(self):
+        """
+        TODO: Wrap those base commands with safe subprocess call:
+        
+            systemctl unmask wpa_supplicant
+            ip link set dev self.name down
+            iwconfig self.name mode managed
+            ip link set dev self.name up
+            systemctl restart wpa_supplicant
+        """
+        pass
         
 
     def __str__(self) -> str:
