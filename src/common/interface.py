@@ -1,18 +1,9 @@
 from json_parser import *
-
+from exceptions import InterfaceExceptions
 from typing import List
 import logging
 import netifaces
 import subprocess
-
-class InterfaceNotFoundError(Exception):
-    pass
-
-class InvalidInterface(Exception):
-    pass
-
-class NotWirelessInterface(Exception):
-    pass
 
 class Interface():
     def __init__(self): 
@@ -35,7 +26,7 @@ class Interface():
         interface_exists = self.name in netifaces.interfaces()
         if interface_exists == False:
             logging.error(f"Interface {self.name} does not exists.")
-            raise InterfaceNotFoundError()
+            raise InterfaceExceptions.InterfaceNotFoundError()
         return interface_exists
 
     
@@ -56,7 +47,7 @@ class Interface():
             output = str(subprocess.check_output(command_to_execute))
         except subprocess.CalledProcessError as e:
             logging.error(f"{e}\n{self.name} is not a wireless interface.")
-            raise NotWirelessInterface()
+            raise InterfaceExceptions.NotWirelessInterface()
         return output
 
 
@@ -91,7 +82,7 @@ class Interface():
         if self.interface_exists and self.up and self.mode == "managed":
             return
         logging.error(f"Invalid interface {self}\nInterface details:\n")
-        raise InvalidInterface()
+        raise InterfaceExceptions.InvalidInterface()
     
 
     def recheck(self):
