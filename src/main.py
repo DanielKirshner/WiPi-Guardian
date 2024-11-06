@@ -5,7 +5,6 @@ import os
 
 def main():
     logger.init()
-    logging.info("Main started!")
     
     try:
         BOT_TOKEN_FILE_PATH = os.path.join("config", "bot_token.txt")

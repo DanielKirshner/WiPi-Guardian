@@ -38,8 +38,15 @@ def init() -> None:
     log_file_path = os.path.join(log_dir_path, f"{timestamp_now()}.log") 
     create_logger_folder(log_dir_path)
 
-    logging.basicConfig(level=logging.INFO, 
-                    filename=log_file_path,
-                    filemode='w',
-                    format=f"%(asctime)s - %(levelname)s - %(message)s")
+    logging.basicConfig(
+                        level=logging.INFO, 
+                        filename=log_file_path,
+                        filemode='w',
+                        format=f"%(asctime)s - %(levelname)s - %(message)s",
+                        handlers=
+                        [
+                            logging.FileHandler(log_file_path),
+                            logging.StreamHandler(sys.stdout)
+                        ])
+    
     logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))
