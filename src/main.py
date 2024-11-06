@@ -1,4 +1,4 @@
-from telegram_bot.telegram_bot import TelegramBot
+from telegram_bot.telegram_bot import TelegramBotRunner
 from common import logger
 import logging
 import os
@@ -15,9 +15,8 @@ def main():
         logging.error(f"{BOT_TOKEN_FILE_PATH} file not found.")
         return
     
-    # Create and run the bot
-    with TelegramBot(TELEGRAM_API_TOKEN) as bot:
-        bot.run_bot()
+    with TelegramBotRunner(TELEGRAM_API_TOKEN) as bot:
+        pass
 
 
 if __name__ == "__main__":

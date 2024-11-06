@@ -48,3 +48,4 @@ def init() -> None:
                         ])
     # Suppress spam logger messages from httpcore
     logging.getLogger("httpcore").setLevel(logging.WARNING)
+    logging.getLogger("httpx").setLevel(logging.WARNING)
