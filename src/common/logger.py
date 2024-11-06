@@ -40,13 +40,11 @@ def init() -> None:
 
     logging.basicConfig(
                         level=logging.INFO, 
-                        filename=log_file_path,
-                        filemode='w',
                         format=f"%(asctime)s - %(levelname)s - %(message)s",
                         handlers=
                         [
                             logging.FileHandler(log_file_path),
                             logging.StreamHandler(sys.stdout)
                         ])
-    
-    logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))
+    # Suppress spam logger messages from httpcore
+    logging.getLogger("httpcore").setLevel(logging.WARNING)
