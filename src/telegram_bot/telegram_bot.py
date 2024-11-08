@@ -6,14 +6,14 @@ class TelegramBotRunner:
     def __init__(self, token):
         self.application = Application.builder().token(token).build()
         self.command_handlers = BotCommandHandlers(self)
-        self._register_all_handlers()
+        self.__register_all_handlers()
     
     def __enter__(self):
         logging.info("Telegram bot is up.")
         self.application.run_polling()
         return self
 
-    def _register_all_handlers(self):
+    def __register_all_handlers(self):
         for command_name in dir(self.command_handlers):
             if not command_name.startswith('_'):  # Skip private methods
                 handler_function = getattr(self.command_handlers, command_name)
