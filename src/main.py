@@ -1,10 +1,10 @@
-import logger
-import logging
+from common.wifi_scanner import WiFiScanner
+
 
 def main():
-    logger.init()
-    logging.info("Main started!")
-
+    interface = "wlx00c0ca2a4473"  # Replace with your interface name
+    scanner = WiFiScanner(interface)
+    scanner.run()
 
 if __name__ == "__main__":
     main()
