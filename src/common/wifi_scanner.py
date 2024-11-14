@@ -27,7 +27,7 @@ class WiFiScanner:
 
     def __print_results(self):
         os.system('clear')
-        print("BSSID\t\t\tBeacons\tESSID")
+        print("BSSID\t\t\tBeacons\t\tESSID")
         print("-" * 50)
         for network in self.__networks.values():
             print(f"{network.bssid}  {network.beacons:7d}    {network.ssid}")
@@ -42,16 +42,15 @@ class WiFiScanner:
             channel = channel % MAX_2G_CHANNEL + 1
             sleep(CHANNEL_SWITCH_INTERVAL)
 
-    def run(self, timeout_seconds=60):
+    def run(self, scanning_duration_in_seconds=60):
         channel_changer = Thread(target=self.__change_channel)
         channel_changer.daemon = True
         channel_changer.start()
 
-        print(f"Scanning on {self.__interface} for {DEFAULT_SCAN_DURATION} seconds...")
+        print(f"Scanning on {self.__interface} for {scanning_duration_in_seconds} seconds...")
         
         start_time = time.time()
-        while time.time() - start_time < DEFAULT_SCAN_DURATION:
+        while time.time() - start_time < scanning_duration_in_seconds:
             sniff(iface=self.__interface, prn=self.__callback, timeout=RESULT_REFRESH_INTERVAL)
             self.__print_results()
 
-        print("Scan completed.")
